@@ -3027,6 +3027,7 @@ GameObject:
   m_Component:
   - component: {fileID: 133693968}
   - component: {fileID: 133693969}
+  - component: {fileID: 133693971}
   - component: {fileID: 133693970}
   m_Layer: 0
   m_Name: cm
@@ -3073,16 +3074,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa7155796051b734daa718462081dc5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 1
+  m_BindingMode: 3
   m_FollowOffset: {x: 0, y: 0, z: -10}
-  m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_XDamping: 0.1
+  m_YDamping: 0.1
+  m_ZDamping: 0.1
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
   m_RollDamping: 0
   m_AngularDamping: 0
+--- !u!114 &133693971
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 133693967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8b78ac948f05a46a6d8339a503172b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &206732021
 GameObject:
   m_ObjectHideFlags: 0
@@ -4688,6 +4701,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1230989766}
   - component: {fileID: 1230989765}
+  - component: {fileID: 1230989767}
   m_Layer: 0
   m_Name: CM vcam1
   m_TagString: Untagged
@@ -4713,7 +4727,7 @@ MonoBehaviour:
   m_StreamingVersion: 20170927
   m_Priority: 10
   m_StandbyUpdate: 2
-  m_LookAt: {fileID: 0}
+  m_LookAt: {fileID: 1600938703}
   m_Follow: {fileID: 1600938703}
   m_Lens:
     FieldOfView: 60
@@ -4745,6 +4759,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1230989767
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1230989764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2fba25a5cd15594e8f050a11e386c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ConfineMode: 0
+  m_BoundingVolume: {fileID: 0}
+  m_BoundingShape2D: {fileID: 206732025}
+  m_ConfineScreenEdges: 0
+  m_Damping: 0
 --- !u!1 &1600938700
 GameObject:
   m_ObjectHideFlags: 0
@@ -4890,7 +4921,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCanMove: 1
   playerNeedsToStop: 0
-  playerMoveSpeed: 1.5
+  playerMoveSpeed: 6
 --- !u!50 &1600938706
 Rigidbody2D:
   serializedVersion: 4
