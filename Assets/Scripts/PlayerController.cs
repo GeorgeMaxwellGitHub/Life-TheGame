@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float reduceTimeWhenStay;
     [SerializeField] float reduceTimeWhenWalk;
 
+    [SerializeField] float increaseFogRadiusWhenWalk;
+
     void Start()
     {
         _playerRigidbody2D = GetComponent<Rigidbody2D>();
@@ -30,9 +32,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetAxisRaw("Horizontal") !=0 || Input.GetAxisRaw("Vertical") != 0)
+        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         {
             GameManager.instance.ReduceTime(reduceTimeWhenWalk);
+            GameManager.instance.IncreaseFogMaskRadius(increaseFogRadiusWhenWalk);
         } else
         {
             GameManager.instance.ReduceTime(reduceTimeWhenStay);

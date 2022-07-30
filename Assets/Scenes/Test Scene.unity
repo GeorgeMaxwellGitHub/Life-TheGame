@@ -18502,7 +18502,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a5224887c8397684d9779aedc90797bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTime: 10
+  maxTime: 1
+  fogSpriteMask: {fileID: 2144400202}
+  minFogMaskRadious: 6
+  maxFogMaskRadious: 23
   timeLeftText: {fileID: 1102215422}
 --- !u!4 &1511540838
 Transform:
@@ -18665,8 +18668,9 @@ MonoBehaviour:
   playerCanMove: 1
   playerNeedsToStop: 0
   playerMoveSpeed: 6
-  reduceTimeWhenStay: 0.00033333333
-  reduceTimeWhenWalk: 0.05
+  reduceTimeWhenStay: 0.000011111111
+  reduceTimeWhenWalk: 0.000016666667
+  increaseFogRadiusWhenWalk: 0.0011333333
 --- !u!50 &1600938706
 Rigidbody2D:
   serializedVersion: 4
@@ -18796,7 +18800,7 @@ Transform:
   m_GameObject: {fileID: 2144400201}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.4, z: 0}
-  m_LocalScale: {x: 5.657636, y: 5.657636, z: 5.657636}
+  m_LocalScale: {x: 6, y: 6, z: 6}
   m_Children:
   - {fileID: 2063951763}
   m_Father: {fileID: 1600938703}
