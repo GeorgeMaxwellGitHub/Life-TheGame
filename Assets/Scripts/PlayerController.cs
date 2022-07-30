@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController instance;
 
+    [SerializeField] float reduceTimeWhenStay;
+    [SerializeField] float reduceTimeWhenWalk;
+
     void Start()
     {
         _playerRigidbody2D = GetComponent<Rigidbody2D>();
@@ -27,6 +30,14 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (Input.GetAxisRaw("Horizontal") !=0 || Input.GetAxisRaw("Vertical") != 0)
+        {
+            GameManager.instance.ReduceTime(reduceTimeWhenWalk);
+        } else
+        {
+            GameManager.instance.ReduceTime(reduceTimeWhenStay);
+        }
+
         if (playerCanMove && !playerNeedsToStop)
         {
             _playerRigidbody2D.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * playerMoveSpeed;
@@ -34,7 +45,7 @@ public class PlayerController : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = Input.GetAxisRaw("Horizontal") < 0 ? true : false;
 
             _playerAnimator.SetFloat("moveX", _playerRigidbody2D.velocity.x);
-            _playerAnimator.SetFloat("moveY", _playerRigidbody2D.velocity.y);
+            _playerAnimator.SetFloat("moveY", _playerRigidbody2D.velocity.y);  
         }
         else
         {
