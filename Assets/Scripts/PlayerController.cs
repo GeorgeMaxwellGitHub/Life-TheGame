@@ -17,17 +17,36 @@ public class PlayerController : MonoBehaviour
 
     public static PlayerController instance;
 
-    [SerializeField] float reduceTimeWhenStay;
-    [SerializeField] float reduceTimeWhenWalk;
+    float reduceTimeWhenStay;
+    float reduceTimeWhenWalk;
 
-    [SerializeField] float increaseFogRadiusWhenWalk;
+    float increaseFogRadiusWhenWalk;
+
+    [SerializeField] float minutesOfStayToEndGame;
+    [SerializeField] float minutesOfWalkToEndGame;
+
+    [SerializeField] float minutesOfWalkToMaxFogArea;
 
     void Start()
     {
         _playerRigidbody2D = GetComponent<Rigidbody2D>();
         _playerAnimator = GetComponent<Animator>();
 
+
+        increaseFogRadiusWhenWalk = CalculateIterationValue(GameManager.instance.GetMinFogMaskRadious(),
+                                    GameManager.instance.GetMaxFogMaskRadious(),
+                                    minutesOfWalkToMaxFogArea);
+
+        reduceTimeWhenStay = CalculateIterationValue(0, 1, minutesOfStayToEndGame);
+        reduceTimeWhenWalk = CalculateIterationValue(0, 1, minutesOfWalkToEndGame);
+
         instance = this;
+    }
+
+    float CalculateIterationValue(float minValue, float maxValue, float timeInMinutes)
+    {
+        //3000 is a value of iteration per minute in FixedUpdate
+        return ((maxValue - minValue) / (3000 * timeInMinutes));
     }
 
     void FixedUpdate()

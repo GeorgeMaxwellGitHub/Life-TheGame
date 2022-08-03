@@ -30,128 +30,13 @@ SpriteAtlas:
       enableTightPacking: 1
     secondaryTextureSettings: {}
     variantMultiplier: 1
-    packables:
-    - {fileID: 2800000, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
+    packables: []
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
-  m_PackedSprites:
-  - {fileID: -4020496359177641236, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 5701204585864668955, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -5791362352989972275, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -5301858549268927767, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 1578434394822203897, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 6368336178896823525, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -1552774661849212016, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 8684262252161257903, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -1561010772028207391, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -750923328290821785, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 5170688400329229868, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 8816210464113933261, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 7737208514873676444, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -608013522917690021, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -3526608804511596139, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -2593459933643656045, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 7655149087953711856, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 8634755178454867045, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 3087903933458185034, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -7919146023549652753, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 4423791835469223438, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 5875389346175364408, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 3748318876821461409, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 6753132967486004219, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 8130099121939531281, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -4480394019885014006, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 4915590673493169646, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 4417228556033646979, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 8598076316828917083, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 2809920964457631218, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -8728333435844250003, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 2136712448994437098, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -3708816136115873983, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 50239343574070864, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -4143942107492506507, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 2415848269320671341, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -5783564095831883639, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -5269224105036346354, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -8472949044981349865, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -5852723084290175284, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -6959486878085270236, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -515260039015200677, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -2956486166017030501, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 5323472918269828688, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 6323807386682300817, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 4955785484494495962, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -3323630770577129463, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -2461752988185184029, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -666956164348418461, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -7818664617007262398, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -7664370871295732002, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -4032658348926441925, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -1838119685359197090, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 858363654459082783, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 8673039747343494719, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: 6849555560251582410, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  - {fileID: -5612444898314161670, guid: 319e808beb4e0ea4b8697cf0c05fb055, type: 3}
-  m_PackedSpriteNamesToIndex:
-  - Life TileSet Overworld_48
-  - Life TileSet Overworld_49
-  - Life TileSet Overworld_6
-  - Life TileSet Overworld_7
-  - Life TileSet Overworld_4
-  - Life TileSet Overworld_5
-  - Life TileSet Overworld_2
-  - Life TileSet Overworld_3
-  - Life TileSet Overworld_0
-  - Life TileSet Overworld_1
-  - Life TileSet Overworld_8
-  - Life TileSet Overworld_9
-  - Life TileSet Overworld_28
-  - Life TileSet Overworld_51
-  - Life TileSet Overworld_29
-  - Life TileSet Overworld_50
-  - Life TileSet Overworld_53
-  - Life TileSet Overworld_52
-  - Life TileSet Overworld_24
-  - Life TileSet Overworld_55
-  - Life TileSet Overworld_25
-  - Life TileSet Overworld_39
-  - Life TileSet Overworld_54
-  - Life TileSet Overworld_26
-  - Life TileSet Overworld_38
-  - Life TileSet Overworld_27
-  - Life TileSet Overworld_37
-  - Life TileSet Overworld_56
-  - Life TileSet Overworld_20
-  - Life TileSet Overworld_36
-  - Life TileSet Overworld_21
-  - Life TileSet Overworld_35
-  - Life TileSet Overworld_22
-  - Life TileSet Overworld_34
-  - Life TileSet Overworld_23
-  - Life TileSet Overworld_33
-  - Life TileSet Overworld_32
-  - Life TileSet Overworld_31
-  - Life TileSet Overworld_30
-  - Life TileSet Overworld_15
-  - Life TileSet Overworld_46
-  - Life TileSet Overworld_14
-  - Life TileSet Overworld_47
-  - Life TileSet Overworld_17
-  - Life TileSet Overworld_44
-  - Life TileSet Overworld_16
-  - Life TileSet Overworld_45
-  - Life TileSet Overworld_11
-  - Life TileSet Overworld_42
-  - Life TileSet Overworld_10
-  - Life TileSet Overworld_43
-  - Life TileSet Overworld_13
-  - Life TileSet Overworld_40
-  - Life TileSet Overworld_12
-  - Life TileSet Overworld_41
-  - Life TileSet Overworld_19
-  - Life TileSet Overworld_18
+  m_PackedSprites: []
+  m_PackedSpriteNamesToIndex: []
   m_RenderDataMap: {}
   m_Tag: Sprite Atlas
   m_IsVariant: 0

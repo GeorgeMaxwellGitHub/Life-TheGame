@@ -17,6 +17,16 @@ public class GameManager : MonoBehaviour
     //Temp. Delete after adding the slider
     [SerializeField] Text timeLeftText;
 
+    public float GetMaxFogMaskRadious()
+    {
+        return maxFogMaskRadious;
+    }
+
+    public float GetMinFogMaskRadious()
+    {
+        return minFogMaskRadious;
+    }
+
     void Start()
     {
         instance = this;
