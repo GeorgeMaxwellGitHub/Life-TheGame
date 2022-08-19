@@ -16,6 +16,11 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        SetBounds();
+    }
+
+    public void SetBounds()
+    {
         halfHeight = Camera.main.orthographicSize;
         halfWidth = halfHeight * Camera.main.aspect;
 
@@ -23,11 +28,5 @@ public class CameraController : MonoBehaviour
         topRightLimit = map.localBounds.max + new Vector3(-halfWidth, -halfHeight, 0f);
 
         PlayerController.instance.SetBounds(map.localBounds.min, map.localBounds.max);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

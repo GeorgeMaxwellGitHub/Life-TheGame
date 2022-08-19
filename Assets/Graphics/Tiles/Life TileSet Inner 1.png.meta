@@ -1,0 +1,423 @@
+fileFormatVersion: 2
+guid: bf5556837a0b5ae41a6261622a5c79f6
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8033273144870808710
+    second: Life TileSet Inner 1_0
+  - first:
+      213: 8309851368792729519
+    second: Life TileSet Inner 1_1
+  - first:
+      213: -1985967764254614008
+    second: Life TileSet Inner 1_2
+  - first:
+      213: -4098313532999502635
+    second: Life TileSet Inner 1_3
+  - first:
+      213: -5020640450412257740
+    second: Life TileSet Inner 1_4
+  - first:
+      213: 2620724281320416446
+    second: Life TileSet Inner 1_5
+  - first:
+      213: 5341374795234579036
+    second: Life TileSet Inner 1_6
+  - first:
+      213: -8419225744630639914
+    second: Life TileSet Inner 1_7
+  - first:
+      213: 949118722832998643
+    second: Life TileSet Inner 1_8
+  - first:
+      213: 5471704583009291095
+    second: Life TileSet Inner 1_9
+  - first:
+      213: -5560545574038789941
+    second: Life TileSet Inner 1_10
+  - first:
+      213: 2692005242939168075
+    second: Life TileSet Inner 1_11
+  - first:
+      213: 1857464165352376357
+    second: Life TileSet Inner 1_12
+  - first:
+      213: -4061067338076212708
+    second: Life TileSet Inner 1_13
+  - first:
+      213: 4837801626934687328
+    second: Life TileSet Inner 1_14
+  - first:
+      213: 5840270406175342289
+    second: Life TileSet Inner 1_15
+  - first:
+      213: -6150085161402226419
+    second: Life TileSet Inner 1_16
+  - first:
+      213: 3965345830910104271
+    second: Life TileSet Inner 1_17
+  - first:
+      213: 8007276176487065584
+    second: Life TileSet Inner 1_18
+  - first:
+      213: -4850275752882832804
+    second: Life TileSet Inner 1_19
+  - first:
+      213: 5920774147564105920
+    second: Life TileSet Inner 1_20
+  - first:
+      213: -8506630026362437544
+    second: Life TileSet Inner 1_21
+  - first:
+      213: -5031124717049211139
+    second: Life TileSet Inner 1_22
+  - first:
+      213: 4196634590181937622
+    second: Life TileSet Inner 1_23
+  - first:
+      213: -3811258904886619242
+    second: Life TileSet Inner 1_24
+  - first:
+      213: 7185137386206070097
+    second: Life TileSet Inner 1_25
+  - first:
+      213: -7020001007863408928
+    second: Life TileSet Inner 1_26
+  - first:
+      213: 1378367518273963989
+    second: Life TileSet Inner 1_27
+  - first:
+      213: 3595456359821502382
+    second: Life TileSet Inner 1_28
+  - first:
+      213: -9156661084372707567
+    second: Life TileSet Inner 1_29
+  - first:
+      213: -5348444581095547718
+    second: Life TileSet Inner 1_30
+  - first:
+      213: -8415666968017122090
+    second: Life TileSet Inner 1_31
+  - first:
+      213: 8524049277095534622
+    second: Life TileSet Inner 1_32
+  - first:
+      213: 1796818239476335277
+    second: Life TileSet Inner 1_33
+  - first:
+      213: -4402568441027919501
+    second: Life TileSet Inner 1_34
+  - first:
+      213: -1326823543058972257
+    second: Life TileSet Inner 1_35
+  - first:
+      213: 5781310748007687028
+    second: Life TileSet Inner 1_36
+  - first:
+      213: 2069007333263823277
+    second: Life TileSet Inner 1_37
+  - first:
+      213: -5013455685389357314
+    second: Life TileSet Inner 1_38
+  - first:
+      213: -3557798501940137093
+    second: Life TileSet Inner 1_39
+  - first:
+      213: 5130569881422024940
+    second: Life TileSet Inner 1_40
+  - first:
+      213: 6214848940063834860
+    second: Life TileSet Inner 1_41
+  - first:
+      213: 6039492776574347462
+    second: Life TileSet Inner 1_42
+  - first:
+      213: 4714901057821735864
+    second: Life TileSet Inner 1_43
+  - first:
+      213: -5586971290104544768
+    second: Life TileSet Inner 1_44
+  - first:
+      213: -9159362673999802732
+    second: Life TileSet Inner 1_45
+  - first:
+      213: -2763770977124667191
+    second: Life TileSet Inner 1_46
+  - first:
+      213: 9127707117350903146
+    second: Life TileSet Inner 1_47
+  - first:
+      213: 2830146226853656142
+    second: Life TileSet Inner 1_48
+  - first:
+      213: -4003364319766012503
+    second: Life TileSet Inner 1_49
+  - first:
+      213: 4178674112808070968
+    second: Life TileSet Inner 1_50
+  - first:
+      213: 4281314011093908173
+    second: Life TileSet Inner 1_51
+  - first:
+      213: -6345025812004218537
+    second: Life TileSet Inner 1_52
+  - first:
+      213: -442524744749295018
+    second: Life TileSet Inner 1_53
+  - first:
+      213: -5971908035588483814
+    second: Life TileSet Inner 1_54
+  - first:
+      213: 2461261522635311351
+    second: Life TileSet Inner 1_55
+  - first:
+      213: -7324002666990902062
+    second: Life TileSet Inner 1_56
+  - first:
+      213: -495287714952931670
+    second: Life TileSet Inner 1_57
+  - first:
+      213: -6474570284701653714
+    second: Life TileSet Inner 1_58
+  - first:
+      213: 269158359212364484
+    second: Life TileSet Inner 1_59
+  - first:
+      213: 9115286947303671159
+    second: Life TileSet Inner 1_60
+  - first:
+      213: 8481220958088404223
+    second: Life TileSet Inner 1_61
+  - first:
+      213: -1190476805439297004
+    second: Life TileSet Inner 1_62
+  - first:
+      213: -1037707336014828427
+    second: Life TileSet Inner 1_63
+  - first:
+      213: -4021547664102215376
+    second: Life TileSet Inner 1_64
+  - first:
+      213: -8502169746778552872
+    second: Life TileSet Inner 1_65
+  - first:
+      213: 6785586066240887901
+    second: Life TileSet Inner 1_66
+  - first:
+      213: -2596032293542771089
+    second: Life TileSet Inner 1_67
+  - first:
+      213: -8347484496609314125
+    second: Life TileSet Inner 1_68
+  - first:
+      213: 7671298912873250026
+    second: Life TileSet Inner 1_69
+  - first:
+      213: -1982612609632127100
+    second: Life TileSet Inner 1_70
+  - first:
+      213: -2720141529912481565
+    second: Life TileSet Inner 1_71
+  - first:
+      213: -1191244560618555712
+    second: Life TileSet Inner 1_72
+  - first:
+      213: -1295441845032649423
+    second: Life TileSet Inner 1_73
+  - first:
+      213: -1558293543962760042
+    second: Life TileSet Inner 1_74
+  - first:
+      213: 7905004378990776689
+    second: Life TileSet Inner 1_75
+  - first:
+      213: 8620637753188196784
+    second: Life TileSet Inner 1_76
+  - first:
+      213: -5672133315156669154
+    second: Life TileSet Inner 1_77
+  - first:
+      213: -2988823984033249351
+    second: Life TileSet Inner 1_78
+  - first:
+      213: -1739570051409361757
+    second: Life TileSet Inner 1_79
+  - first:
+      213: -8176672837999508309
+    second: Life TileSet Inner 1_80
+  - first:
+      213: 1204378423615261215
+    second: Life TileSet Inner 1_81
+  - first:
+      213: 5797292851516768492
+    second: Life TileSet Inner 1_82
+  - first:
+      213: 3605860525506378938
+    second: Life TileSet Inner 1_83
+  - first:
+      213: -2171614687563984199
+    second: Life TileSet Inner 1_84
+  - first:
+      213: 1452876911187379236
+    second: Life TileSet Inner 1_85
+  - first:
+      213: -8462744942141472696
+    second: Life TileSet Inner 1_86
+  - first:
+      213: 2166691505892622162
+    second: Life TileSet Inner 1_87
+  - first:
+      213: 5398920756597112104
+    second: Life TileSet Inner 1_88
+  - first:
+      213: 2534370229940269795
+    second: Life TileSet Inner 1_89
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Life TileSet Inner 1_24
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 693503b0830bb1bc0800000000000000
+      internalID: -3811258904886619242
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

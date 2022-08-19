@@ -10,22 +10,22 @@ TextureImporter:
     second: Life TileSet Animals and chars_1
   - first:
       213: 3070634126565647208
-    second: Life TileSet Animals and chars_2
+    second: Girl_1_1
   - first:
       213: -5924002105198776854
-    second: Life TileSet Animals and chars_3
+    second: Girl_1_2
   - first:
       213: 6295359013774507803
-    second: Life TileSet Animals and chars_4
+    second: Girl_1_3
   - first:
       213: 4816829139403718936
-    second: Life TileSet Animals and chars_5
+    second: Girl_2_1
   - first:
       213: 2909303583954528363
-    second: Life TileSet Animals and chars_6
+    second: Girl_2_2
   - first:
       213: -9199253736080762847
-    second: Life TileSet Animals and chars_7
+    second: Girl_2_3
   - first:
       213: -1314692958943269771
     second: Life TileSet Animals and chars_8
@@ -37,40 +37,40 @@ TextureImporter:
     second: Life TileSet Animals and chars_10
   - first:
       213: -7031042598889032690
-    second: Life TileSet Animals and chars_11
+    second: Girl_3_1
   - first:
       213: 6021703679170232234
-    second: Life TileSet Animals and chars_12
+    second: Girl_3_2
   - first:
       213: -899922542378198988
-    second: Life TileSet Animals and chars_13
+    second: Girl_3_3
   - first:
       213: -7266069409812230030
-    second: Life TileSet Animals and chars_14
+    second: Girl_4_1
   - first:
       213: -4833650217326190912
-    second: Life TileSet Animals and chars_15
+    second: Girl_4_2
   - first:
       213: -1688330552380313919
-    second: Life TileSet Animals and chars_16
+    second: Girl_4_3
   - first:
       213: 7204139534721554999
-    second: Life TileSet Animals and chars_17
+    second: Girl_5_1
   - first:
       213: -3515151952822011490
-    second: Life TileSet Animals and chars_18
+    second: Girl_5_2
   - first:
       213: -160052424473848480
-    second: Life TileSet Animals and chars_19
+    second: Girl_5_3
   - first:
       213: 6556275066018873558
-    second: Life TileSet Animals and chars_20
+    second: Girl_6_1
   - first:
       213: -9201442248609977944
-    second: Life TileSet Animals and chars_21
+    second: Girl_6_2
   - first:
       213: 4880435461493106385
-    second: Life TileSet Animals and chars_22
+    second: Girl_6_3
   - first:
       213: 2931136358598371390
     second: Life TileSet Animals and chars_23
@@ -232,7 +232,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_2
+      name: Girl_1_1
       rect:
         serializedVersion: 2
         x: 98
@@ -253,7 +253,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_3
+      name: Girl_1_2
       rect:
         serializedVersion: 2
         x: 114
@@ -274,7 +274,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_4
+      name: Girl_1_3
       rect:
         serializedVersion: 2
         x: 130
@@ -295,7 +295,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_5
+      name: Girl_2_1
       rect:
         serializedVersion: 2
         x: 162
@@ -316,7 +316,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_6
+      name: Girl_2_2
       rect:
         serializedVersion: 2
         x: 178
@@ -337,7 +337,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_7
+      name: Girl_2_3
       rect:
         serializedVersion: 2
         x: 194
@@ -421,7 +421,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_11
+      name: Girl_3_1
       rect:
         serializedVersion: 2
         x: 98
@@ -442,7 +442,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_12
+      name: Girl_3_2
       rect:
         serializedVersion: 2
         x: 114
@@ -463,7 +463,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_13
+      name: Girl_3_3
       rect:
         serializedVersion: 2
         x: 130
@@ -484,7 +484,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_14
+      name: Girl_4_1
       rect:
         serializedVersion: 2
         x: 162
@@ -505,7 +505,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_15
+      name: Girl_4_2
       rect:
         serializedVersion: 2
         x: 178
@@ -526,7 +526,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_16
+      name: Girl_4_3
       rect:
         serializedVersion: 2
         x: 194
@@ -547,7 +547,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_17
+      name: Girl_5_1
       rect:
         serializedVersion: 2
         x: 98
@@ -568,7 +568,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_18
+      name: Girl_5_2
       rect:
         serializedVersion: 2
         x: 114
@@ -589,7 +589,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_19
+      name: Girl_5_3
       rect:
         serializedVersion: 2
         x: 130
@@ -610,7 +610,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_20
+      name: Girl_6_1
       rect:
         serializedVersion: 2
         x: 162
@@ -631,7 +631,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_21
+      name: Girl_6_2
       rect:
         serializedVersion: 2
         x: 178
@@ -652,7 +652,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Life TileSet Animals and chars_22
+      name: Girl_6_3
       rect:
         serializedVersion: 2
         x: 194
@@ -681,7 +681,7 @@ TextureImporter:
         width: 16
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -702,7 +702,7 @@ TextureImporter:
         width: 16
         height: 12
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
