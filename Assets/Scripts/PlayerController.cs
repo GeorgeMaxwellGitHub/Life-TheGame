@@ -39,6 +39,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] string messageShowsBeforePlayingSlotMachine;
     [SerializeField] string messageShowsBeforeTryRelationship;
 
+    [SerializeField] float timeToReduceWhenPlayOnSlotMachine;
+
     //States
     bool _playerCanMove = true;
     bool _playerNeedsToStop = false;
@@ -80,6 +82,15 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (_isBoundsDisable)
+        {
+            if (Input.GetKeyUp(KeyCode.D) && Bridge.instance.ReturnInfiniteModState())
+            {
+                Bridge.instance.MoveBridgeBodyToInitial();
+                Bridge.instance.DisableInfiniteMod();
+            }
+        }
+
         if (GameManager.instance.GetGameEndsStatus() || !GameManager.instance.GameStartedStatus())
         {
             return;
@@ -216,15 +227,6 @@ public class PlayerController : MonoBehaviour
                 SetTryRelationshipActive(false, null);
             }
         }
-
-        if (_isBoundsDisable)
-        {
-            if (Input.GetKeyUp(KeyCode.D) && Bridge.instance.ReturnInfiniteModState())
-            {
-                Bridge.instance.MoveBridgeBodyToInitial();
-                Bridge.instance.DisableInfiniteMod();
-            }
-        }
     }
 
     void FixedUpdate()
@@ -356,7 +358,7 @@ public class PlayerController : MonoBehaviour
     
     public void MakeOneGameOnSlotMachine()
     {
-        GameManager.instance.ReduceTime(0.02f);
+        GameManager.instance.ReduceTime(timeToReduceWhenPlayOnSlotMachine);
         GameManager.instance.ReduceCoins(1);
         int i = Random.Range(0, 3);
         print(i);
@@ -425,6 +427,12 @@ public class PlayerController : MonoBehaviour
         _playerAnimator.SetFloat("moveX", 0);
         _playerAnimator.SetFloat("moveY", 0);
         _playerRigidbody2D.velocity = Vector2.zero;
+
+        if (Bridge.instance.ReturnInfiniteModState())
+        {
+            Bridge.instance.MoveBridgeBodyToInitial();
+            Bridge.instance.DisableInfiniteMod();
+        }
     }
 
     //Get info about bottom left and top right corners of the camera and clamp camera between them

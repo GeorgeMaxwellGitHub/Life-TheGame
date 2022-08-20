@@ -16,12 +16,12 @@ public class AudioManager : MonoBehaviour
 
     [SerializeField] AudioSource lifeMusic;
 
-    bool cantStartBridgeMusic;
+    bool _cantStartBridgeMusic;
 
     void Start()
     {
         instance = this;
-        cantStartBridgeMusic = true;
+        _cantStartBridgeMusic = true;
     }
 
     public void PlayCustomSFX(AudioClip customSFX)
@@ -77,7 +77,7 @@ public class AudioManager : MonoBehaviour
 
     public void PlayBridgeMusic()
     {
-        if (cantStartBridgeMusic)
+        if (_cantStartBridgeMusic)
         {
             bridgeMusic.Play();
             StartCoroutine(StartFadeOutAudioSource(footstepsSoundSources[PlayerController.instance.GetCurrentPlayerFootstepsIndex()], 2f, true));
@@ -86,12 +86,13 @@ public class AudioManager : MonoBehaviour
 
     public void StopBridgeMusic(bool canStartBridegAgain = true)
     {
+        footstepsSoundSources[PlayerController.instance.GetCurrentPlayerFootstepsIndex()].volume = 1f;
+
         if (!canStartBridegAgain)
         {
-            cantStartBridgeMusic = false;
+            _cantStartBridgeMusic = false;
         }
 
-        footstepsSoundSources[PlayerController.instance.GetCurrentPlayerFootstepsIndex()].volume = 1f;
         StartCoroutine(StartFadeOutAudioSource(bridgeMusic, 2f));
     }
 

@@ -49,11 +49,17 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        //TEST ONLY
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         FadeToBlackController();
         FogLogicHandler();
         SaturationLogicHandler();
 
-        curentCoinsUiText.text = GetCurrentCoins().ToString();
+        curentCoinsUiText.text = GetCurrentCoins().ToString(); 
     }
 
     //MAIN GAME MANAGER METHODS
@@ -201,6 +207,12 @@ public class GameManager : MonoBehaviour
         if (persantageOfTimeWhenFogIsStartDecrease >= persantageOfTimeWhenFogIsMax)
         {
             throw new System.Exception("Error: fog begins to decrease before it reaches its maximum!");
+        }
+
+        if (!_isGameStarted)
+        {
+            BWEffect.instance.SetIntensity(0);
+            return;
         }
 
         float formula = (1 - _gameTimeLeft) * minimumSaturationValue;

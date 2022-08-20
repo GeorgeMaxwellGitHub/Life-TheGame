@@ -27,7 +27,6 @@ public class Bridge : MonoBehaviour
     bool _isInfiniteModeActive = false;
     float _cameraOrthographicSizeInitialValue;
     Vector3 _initialSpaceLocalScale;
-    bool _isInfiniteModRunning;
 
     void Start()
     {
@@ -45,12 +44,6 @@ public class Bridge : MonoBehaviour
 
     private void InfiniteModeHandler()
     {
-        if (_isInfiniteModRunning)
-        {
-            AudioManager.instance.PlayBridgeMusic();
-            _isInfiniteModRunning = false;
-        }
-
         if (_isInfiniteModeActive)
         {
             spaceImage.gameObject.transform.localScale += new Vector3(0.0001f, 0.0001f, 0);
@@ -108,13 +101,11 @@ public class Bridge : MonoBehaviour
             AddBridgePart();
             RemoveFirstBridgePart();
 
-            print("Infinite Mod Enabled");
-
             _isInfiniteModeActive = true;
 
-            if (!_isInfiniteModRunning && !AudioManager.instance.IsBridgeMusicPlay())
+            if (!AudioManager.instance.IsBridgeMusicPlay())
             {
-                _isInfiniteModRunning = true;
+                AudioManager.instance.PlayBridgeMusic();
             }
         }
     }
