@@ -7,7 +7,7 @@ public class Coin : MonoBehaviour
     public void Pickup()
     {
         AudioManager.instance.PlayObjectsSFX(4, true);
-        GameManager.instance.AddCoin(1);
+        GameManager.instance.AddCoins(1);
         Destroy(gameObject);
     }
 

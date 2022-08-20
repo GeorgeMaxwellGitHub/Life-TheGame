@@ -360,7 +360,7 @@ public class PlayerController : MonoBehaviour
         GameManager.instance.ReduceCoins(1);
         int i = Random.Range(0, 3);
         print(i);
-        GameManager.instance.AddCoin(i);
+        GameManager.instance.AddCoins(i);
 
         if (i > 0)
         {
@@ -419,7 +419,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void CompletleStopPlayer()
+    public void CompletelyStopPlayer()
     {
         _playerNeedsToStop = true;
         _playerAnimator.SetFloat("moveX", 0);

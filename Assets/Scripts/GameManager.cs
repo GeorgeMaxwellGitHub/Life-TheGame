@@ -7,178 +7,100 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    [SerializeField] SpriteRenderer fadeScreen;
-    [Range(0.001f, 0.01f)][SerializeField] float fadeSpeed;
-    bool isFaded = false;
-    bool isFadeIn;
-    bool isFadeOut;
+    //Cached component references
+    [SerializeField] SpriteRenderer fadeBlackScreen;
 
-    [Header("Time Variable")]
-    public float maxTime;
-    float timeLeft;
-
-    [Header("Fog Variables")]
     [SerializeField] Transform fogSpriteMask;
+
+    [SerializeField] int currentCoins;
+    [SerializeField] Text curentCoinsUiText;
+
+    [SerializeField] Animator welcomeToGameTextAnimator;
+    [SerializeField] SpriteRenderer welcomeToGameScreen;
+
+    [SerializeField] Animator endGameTextAnimator;
+
+    //Config
+    [SerializeField] float maxGameTime;
+    float _gameTimeLeft;
+
+    [Range(0.001f, 0.01f)] [SerializeField] float fadeToBlackSpeed;
+
     [SerializeField] float minFogMaskRadious = 6;
     [SerializeField] float maxFogMaskRadious = 23;
 
     [Range(1f, 0f)] [SerializeField] float persantageOfTimeWhenFogIsMax;
     [Range(1f, 0f)] [SerializeField] float persantageOfTimeWhenFogIsStartDecrease;
 
-    [Header("Saturation Variables")]
     [Range(0f, 1f)] [SerializeField] float minimumSaturationValue;
-    float maximumSaturationValue = 0;
 
-
-    [Header("CoinManager Variables")]
-    [SerializeField] int currentCoins;
-
-    //Temp. Delete after adding the slider
-    [SerializeField] Text timeLeftText;
-
-    [SerializeField] Animator thxTextAnimator;
-
-    bool gameIsEnded;
-
-    [SerializeField] Animator helloText;
-
-    bool gameStarted;
-
-    [SerializeField] SpriteRenderer helloScreen;
-
-    public int GetCurrentCoins()
-    {
-        return currentCoins;
-    }
+    //States
+    bool _isFaded = false;
+    bool _isFadeIn;
+    bool _isFadeOut;
+    bool _isGameEnded;
+    bool _isGameStarted;
 
     void Start()
     {
         instance = this;
-        InitiacteGame();
-
-        //AudioManager.instance.PlayLifeMusic();
-    }
-
-    public bool GetGameEndsStatus()
-    {
-        return gameIsEnded;
+        StartCoroutine(StartGameCor(2f));
     }
 
     void Update()
     {
-        //timeLeftText.text = timeLeft.ToString();
-        FadedController();
+        FadeToBlackController();
         FogLogicHandler();
         SaturationLogicHandler();
 
-        timeLeftText.text = GetCurrentCoins().ToString();
+        curentCoinsUiText.text = GetCurrentCoins().ToString();
     }
 
-    private void FadedController()
+    //MAIN GAME MANAGER METHODS
+
+    IEnumerator StartGameCor(float fadingDuration)
     {
-        if (isFadeOut)
-        {
-            if (fadeScreen.color.a <= 0)
-            {
-                print("Fade Out Complete");
-                isFaded = false;
-                isFadeOut = false;
-            }
-
-            fadeScreen.color = new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, fadeScreen.color.a - fadeSpeed);
-        }
-
-        if (isFadeIn)
-        {
-            if (fadeScreen.color.a >= 1)
-            {
-                print("Fade In Complete");
-                isFaded = true;
-                isFadeIn = false;
-            }
-
-            fadeScreen.color = new Color(fadeScreen.color.r, fadeScreen.color.g, fadeScreen.color.b, fadeScreen.color.a + fadeSpeed);
-        }
-    }
-
-    public bool GetFadingState()
-    {
-        return isFaded;
-    }
-
-    public void FadeIn()
-    {
-        if (isFadeOut == true)
-        {
-            throw new System.Exception("FadeOut process is already has been started.");
-        }
-
-        if (isFaded == true)
-        {
-            throw new System.Exception("Scene is already faded");
-        }
-
-        print("Starts Fade In");
-        isFadeIn = true;
-    }
-
-    public void FadeOut()
-    {
-        if (isFadeOut == true)
-        {
-            throw new System.Exception("FadeIn process is already has been started. ");
-        }
-
-        if (isFaded == false)
-        {
-            throw new System.Exception("Scene is already doesn't faded");
-        }
-
-        print("Starts Fade Out");
-        isFadeOut = true;
-    }
-
-    private void InitiacteGame()
-    {
-        StartCoroutine(StartGameCor(2f));
-    }
-
-    IEnumerator StartGameCor(float duration)
-    {
-        helloScreen.color = new Color(helloScreen.color.r, helloScreen.color.g, helloScreen.color.b, 1);
+        welcomeToGameScreen.color = new Color(welcomeToGameScreen.color.r, welcomeToGameScreen.color.g, welcomeToGameScreen.color.b, 1);
         AudioManager.instance.PlayLifeMusic();
 
         yield return new WaitForSeconds(3f);
 
-        helloText.SetBool("Active", true);
+        welcomeToGameTextAnimator.SetBool("Active", true);
 
         yield return new WaitForSeconds(21f);
 
-        float currentTime = 0;
+        float currentAlphaValue = 0;
         float start = 1;
-        while (currentTime < duration)
+
+        while (currentAlphaValue < fadingDuration)
         {
-            currentTime += Time.deltaTime;
-            helloScreen.color = new Color(helloScreen.color.r, helloScreen.color.g, helloScreen.color.b, Mathf.Lerp(start, 0, currentTime / duration));
+            currentAlphaValue += Time.deltaTime;
+
+            welcomeToGameScreen.color = new Color(welcomeToGameScreen.color.r,
+                welcomeToGameScreen.color.g,
+                welcomeToGameScreen.color.b,
+                Mathf.Lerp(start, 0, currentAlphaValue / fadingDuration));
+
             yield return null;
         }
 
-        timeLeft = maxTime;
-
-        gameStarted = true;
+        _gameTimeLeft = maxGameTime;
+        _isGameStarted = true;
     }
-
 
     public bool GameStartedStatus()
     {
-        return gameStarted;
+        return _isGameStarted;
     }
 
-
+    public bool GetGameEndsStatus()
+    {
+        return _isGameEnded;
+    }
 
     private void EndGame()
     {
-        gameIsEnded = true;
+        _isGameEnded = true;
 
         StartCoroutine(EndGameCor());
         print("Game Ends");
@@ -191,21 +113,89 @@ public class GameManager : MonoBehaviour
             AudioManager.instance.StopBridgeMusic(false);
         }
 
-        fadeSpeed = 0.001f;
+        fadeToBlackSpeed = 0.001f;
 
         AudioManager.instance.PlayLifeMusic();
+
         yield return new WaitForSeconds(33.5f);
-        PlayerController.instance.CompletleStopPlayer();
+
+        PlayerController.instance.CompletelyStopPlayer();
+
         yield return new WaitForSeconds(3f);
+
         FadeIn();
+
         yield return new WaitForSeconds(3f);
-        thxTextAnimator.SetBool("Run", true);
+
+        endGameTextAnimator.SetBool("Run", true);
 
         yield return new WaitForSeconds(10f);
     }
 
-    //SATURATION MANAGER
 
+    //FADING MANAGER
+    private void FadeToBlackController()
+    {
+        if (_isFadeOut)
+        {
+            if (fadeBlackScreen.color.a <= 0)
+            {
+                _isFaded = false;
+                _isFadeOut = false;
+            }
+
+            fadeBlackScreen.color = new Color(fadeBlackScreen.color.r, fadeBlackScreen.color.g, fadeBlackScreen.color.b, fadeBlackScreen.color.a - fadeToBlackSpeed);
+        }
+
+        if (_isFadeIn)
+        {
+            if (fadeBlackScreen.color.a >= 1)
+            {
+                _isFaded = true;
+                _isFadeIn = false;
+            }
+
+            fadeBlackScreen.color = new Color(fadeBlackScreen.color.r, fadeBlackScreen.color.g, fadeBlackScreen.color.b, fadeBlackScreen.color.a + fadeToBlackSpeed);
+        }
+    }
+
+    public bool GetFadingState()
+    {
+        return _isFaded;
+    }
+
+    public void FadeIn()
+    {
+        if (_isFadeOut == true)
+        {
+            throw new System.Exception("FadeOut process is already has been started.");
+        }
+
+        if (_isFaded == true)
+        {
+            throw new System.Exception("Scene is already faded");
+        }
+
+        _isFadeIn = true;
+    }
+
+    public void FadeOut()
+    {
+        if (_isFadeOut == true)
+        {
+            throw new System.Exception("FadeIn process is already has been started. ");
+        }
+
+        if (_isFaded == false)
+        {
+            throw new System.Exception("Scene is already doesn't faded");
+        }
+
+        print("Starts Fade Out");
+        _isFadeOut = true;
+    }
+
+    //SATURATION MANAGER
     private void SaturationLogicHandler()
     {
         if (persantageOfTimeWhenFogIsStartDecrease >= persantageOfTimeWhenFogIsMax)
@@ -213,33 +203,34 @@ public class GameManager : MonoBehaviour
             throw new System.Exception("Error: fog begins to decrease before it reaches its maximum!");
         }
 
+        float formula = (1 - _gameTimeLeft) * minimumSaturationValue;
 
-        float formula = (1 - timeLeft) * minimumSaturationValue;
-        //float formula = (((1 - timeLeft) / (maxTime)) * (maxFogMaskRadious - minFogMaskRadious)) + minFogMaskRadious;
-
-        //print(formula);
         BWEffect.instance.SetIntensity(formula);
     }
 
     //TIME MANAGER
     public void ReduceTime(float value)
     {
-        if (gameIsEnded)
+        if (_isGameEnded)
         {
             return;
         }
 
-        timeLeft -= value;
+        _gameTimeLeft -= value;
 
-        if (timeLeft <= 0)
+        if (_gameTimeLeft <= 0)
         {
-            timeLeft = 0;
+            _gameTimeLeft = 0;
             EndGame();
         }
     }
 
-    //FOG MANAGER
+    public float GetMaxTime()
+    {
+        return maxGameTime;
+    }
 
+    //FOG MANAGER
     public float GetMaxFogMaskRadious()
     {
         return maxFogMaskRadious;
@@ -275,26 +266,24 @@ public class GameManager : MonoBehaviour
             throw new System.Exception("Error: fog begins to decrease before it reaches its maximum!");
         }
 
-        if (timeLeft >= persantageOfTimeWhenFogIsMax)
+        if (_gameTimeLeft >= persantageOfTimeWhenFogIsMax)
         {
-            float formula1 = (((1 - timeLeft) / (maxTime - persantageOfTimeWhenFogIsMax)) * (maxFogMaskRadious - minFogMaskRadious)) + minFogMaskRadious;
+            //IDK how I get this formula, but it make a direct dependence between current time and fog sprite mask radius, normilize time and fog radius variables.
+            float formula1 = (((1 - _gameTimeLeft) / (maxGameTime - persantageOfTimeWhenFogIsMax)) * (maxFogMaskRadious - minFogMaskRadious)) + minFogMaskRadious;
 
-            //print(formula1);
             fogSpriteMask.localScale = new Vector3(formula1, formula1, fogSpriteMask.localScale.z);
         }
 
-        if (timeLeft >= 0 && timeLeft <= persantageOfTimeWhenFogIsStartDecrease)
+        if (_gameTimeLeft >= 0 && _gameTimeLeft <= persantageOfTimeWhenFogIsStartDecrease)
         {
-            float formula2 = (((timeLeft) / (persantageOfTimeWhenFogIsStartDecrease - 0)) * (maxFogMaskRadious - minFogMaskRadious)) + minFogMaskRadious;
+            float formula2 = (((_gameTimeLeft) / (persantageOfTimeWhenFogIsStartDecrease - 0)) * (maxFogMaskRadious - minFogMaskRadious)) + minFogMaskRadious;
 
-            //print(formula2);
             fogSpriteMask.localScale = new Vector3(formula2, formula2, fogSpriteMask.localScale.z);
         }
     }
 
     //COIN MANAGER
-
-    public void AddCoin(int value)
+    public void AddCoins(int value)
     {
         currentCoins += value;
     }
@@ -307,5 +296,10 @@ public class GameManager : MonoBehaviour
         }
 
         currentCoins -= value;
+    }
+
+    public int GetCurrentCoins()
+    {
+        return currentCoins;
     }
 }

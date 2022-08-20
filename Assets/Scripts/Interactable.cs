@@ -77,7 +77,7 @@ public class Interactable : MonoBehaviour
 
         if (canReduceTime)
         {
-            GameManager.instance.ReduceTime(GameManager.instance.maxTime * (timeToReducenInProcent / 100));
+            GameManager.instance.ReduceTime(GameManager.instance.GetMaxTime() * (timeToReducenInProcent / 100));
         }
 
         yield return new WaitForSeconds(waitTime / 2);
