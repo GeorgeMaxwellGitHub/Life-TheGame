@@ -45,11 +45,14 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         StartCoroutine(StartGameCor(2f));
+
+        Cursor.visible = false;
+
+        curentCoinsUiText.text = GetCurrentCoins().ToString();
     }
 
     void Update()
     {
-        //TEST ONLY
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
