@@ -7,7 +7,6 @@ public class Grass : MonoBehaviour
     [SerializeField] ParticleSystem particles;
 
     [SerializeField] bool canActivateButterfly;
-
     [SerializeField] Butterfly butterfly;
 
     private void OnTriggerEnter2D(Collider2D collision)

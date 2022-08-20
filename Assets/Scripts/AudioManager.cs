@@ -6,9 +6,9 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
 
-    [SerializeField] AudioSource[] footsteps;
+    [SerializeField] AudioSource[] footstepsSoundSources;
 
-    [SerializeField] AudioSource[] objects;
+    [SerializeField] AudioSource[] objectsSoundSources;
 
     [SerializeField] AudioSource customSFXSource;
 
@@ -18,17 +18,10 @@ public class AudioManager : MonoBehaviour
 
     bool cantStartBridgeMusic;
 
-    // Start is called before the first frame update
     void Start()
     {
         instance = this;
         cantStartBridgeMusic = true;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void PlayCustomSFX(AudioClip customSFX)
@@ -46,13 +39,13 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     public void PlayFootsteps(int index)
     {
-        foreach (AudioSource item in footsteps)
+        foreach (AudioSource item in footstepsSoundSources)
         {
             item.Stop();
         }
 
-        footsteps[index].pitch = Random.Range(0.95f, 1.05f);
-        footsteps[index].Play();
+        footstepsSoundSources[index].pitch = Random.Range(0.95f, 1.05f);
+        footstepsSoundSources[index].Play();
     }
 
     /// <summary>
@@ -68,17 +61,17 @@ public class AudioManager : MonoBehaviour
     {
         if (ignoreOthers)
         {
-            objects[index].Stop();
-            objects[index].pitch = Random.Range(0.95f, 1.05f);
-            objects[index].Play();
+            objectsSoundSources[index].Stop();
+            objectsSoundSources[index].pitch = Random.Range(0.95f, 1.05f);
+            objectsSoundSources[index].Play();
 
             return;
         }
 
-        if (!objects[index].isPlaying)
+        if (!objectsSoundSources[index].isPlaying)
         {
-            objects[index].pitch = Random.Range(0.95f, 1.05f);
-            objects[index].Play();
+            objectsSoundSources[index].pitch = Random.Range(0.95f, 1.05f);
+            objectsSoundSources[index].Play();
         }
     }
 
@@ -87,9 +80,8 @@ public class AudioManager : MonoBehaviour
         if (cantStartBridgeMusic)
         {
             bridgeMusic.Play();
-            StartCoroutine(StartFadeOutAudioSource(footsteps[PlayerController.instance.GetCurrentPlayerFootstepsIndex()], 2f, true));
+            StartCoroutine(StartFadeOutAudioSource(footstepsSoundSources[PlayerController.instance.GetCurrentPlayerFootstepsIndex()], 2f, true));
         }
-        
     }
 
     public void StopBridgeMusic(bool canStartBridegAgain = true)
@@ -99,7 +91,7 @@ public class AudioManager : MonoBehaviour
             cantStartBridgeMusic = false;
         }
 
-        footsteps[PlayerController.instance.GetCurrentPlayerFootstepsIndex()].volume = 1f;
+        footstepsSoundSources[PlayerController.instance.GetCurrentPlayerFootstepsIndex()].volume = 1f;
         StartCoroutine(StartFadeOutAudioSource(bridgeMusic, 2f));
     }
 

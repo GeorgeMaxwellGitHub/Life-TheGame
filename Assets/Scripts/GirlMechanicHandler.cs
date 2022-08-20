@@ -5,13 +5,14 @@ using UnityEngine;
 public class GirlMechanicHandler : MonoBehaviour
 {
     public static GirlMechanicHandler instance;
+
     [SerializeField] GameObject spawnArea;
 
-    [SerializeField] Transform girlFinalSpawnArea; 
+    [SerializeField] Transform girlSpawnAreaIfSuccesfulRelationship; 
 
     [SerializeField] Girl[] girls;
 
-    [SerializeField] float howMuchTimeReduce;
+    [SerializeField] float howMuchTimeReduceIfUnsuccessful;
 
     // Start is called before the first frame update
     void Start()
@@ -37,12 +38,12 @@ public class GirlMechanicHandler : MonoBehaviour
             RespawnGirl(girls[Random.Range(0, girls.Length)]);
         } else
         {
-            GameManager.instance.ReduceTime(howMuchTimeReduce);
+            GameManager.instance.ReduceTime(howMuchTimeReduceIfUnsuccessful);
 
             if (Random.Range(0, 1f) >= 0.5f)
             {
                 girl.ChangeState(2);
-                girl.transform.position = girlFinalSpawnArea.position;
+                girl.transform.position = girlSpawnAreaIfSuccesfulRelationship.position;
 
                 PlayerController.instance.ShowLoveHeart();
             }

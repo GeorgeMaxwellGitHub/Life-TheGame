@@ -6,25 +6,24 @@ public class PetCat : MonoBehaviour
 {
     public static PetCat instance;
 
-    [SerializeField] Sprite inncativeCat;
-    [SerializeField] Sprite activeCat;
+    [SerializeField] Sprite innactiveCatSprite;
+    [SerializeField] Sprite activeCatSprite;
 
-    [SerializeField] Sprite loveCat;
+    [SerializeField] Sprite loveCatSprite;
 
-    bool canShowLove = true;
+    bool _canShowLove = true;
 
     [SerializeField] Animator showLoveAnimator;
 
-    // Start is called before the first frame update
     void Start()
     {
         instance = this;
-        GetComponent<SpriteRenderer>().sprite = inncativeCat;
+        GetComponent<SpriteRenderer>().sprite = innactiveCatSprite;
     }
 
     public void ShowLove()
     {
-        if (!canShowLove)
+        if (!_canShowLove)
         {
             return;
         } else
@@ -35,9 +34,9 @@ public class PetCat : MonoBehaviour
 
     IEnumerator ShowLoveCor()
     {
-        canShowLove = false;
+        _canShowLove = false;
 
-        GetComponent<SpriteRenderer>().sprite = loveCat;
+        GetComponent<SpriteRenderer>().sprite = loveCatSprite;
         showLoveAnimator.SetBool("ShowLove", true);
 
         AudioManager.instance.PlayObjectsSFX(2);
@@ -46,17 +45,17 @@ public class PetCat : MonoBehaviour
 
         showLoveAnimator.SetBool("ShowLove", false);
 
-        GetComponent<SpriteRenderer>().sprite = inncativeCat;
+        GetComponent<SpriteRenderer>().sprite = innactiveCatSprite;
 
-        canShowLove = true;
+        _canShowLove = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && canShowLove)
+        if (collision.tag == "Player" && _canShowLove)
         {
             PlayerController.instance.SetPetCatOptionActive(true);
-            GetComponent<SpriteRenderer>().sprite = activeCat;
+            GetComponent<SpriteRenderer>().sprite = activeCatSprite;
 
             if (Random.Range(0, 1f) <= 0.2f)
             {
@@ -67,11 +66,10 @@ public class PetCat : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && canShowLove)
+        if (collision.tag == "Player" && _canShowLove)
         {
             PlayerController.instance.SetPetCatOptionActive(false);
-            GetComponent<SpriteRenderer>().sprite = inncativeCat;
+            GetComponent<SpriteRenderer>().sprite = innactiveCatSprite;
         }
     }
-
 }

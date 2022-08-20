@@ -5,15 +5,14 @@ using UnityEngine.Tilemaps;
 
 public class CameraController : MonoBehaviour
 {
-    public Tilemap map;
+    [SerializeField] Tilemap tilemapInWhichBoundsCameraWillClamp;
 
-    private Vector3 bottomLeftLimit;
-    private Vector3 topRightLimit;
+    Vector3 _bottomLeftLimit;
+    Vector3 _topRightLimit;
 
-    private float halfHeight;
-    private float halfWidth;
+    float _halfHeight;
+    float _halfWidth;
 
-    // Start is called before the first frame update
     void Start()
     {
         SetBounds();
@@ -21,12 +20,13 @@ public class CameraController : MonoBehaviour
 
     public void SetBounds()
     {
-        halfHeight = Camera.main.orthographicSize;
-        halfWidth = halfHeight * Camera.main.aspect;
+        _halfHeight = Camera.main.orthographicSize;
+        _halfWidth = _halfHeight * Camera.main.aspect;
 
-        bottomLeftLimit = map.localBounds.min + new Vector3(halfWidth, halfHeight, 0f);
-        topRightLimit = map.localBounds.max + new Vector3(-halfWidth, -halfHeight, 0f);
+        //Actually I forgot what this doing and why this two lines needed, but I just leave them there
+        _bottomLeftLimit = tilemapInWhichBoundsCameraWillClamp.localBounds.min + new Vector3(_halfWidth, _halfHeight, 0f);
+        _topRightLimit = tilemapInWhichBoundsCameraWillClamp.localBounds.max + new Vector3(-_halfWidth, -_halfHeight, 0f);
 
-        PlayerController.instance.SetBoundsForCamera(map.localBounds.min, map.localBounds.max);
+        PlayerController.instance.SetBoundsForCamera(tilemapInWhichBoundsCameraWillClamp.localBounds.min, tilemapInWhichBoundsCameraWillClamp.localBounds.max);
     }
 }

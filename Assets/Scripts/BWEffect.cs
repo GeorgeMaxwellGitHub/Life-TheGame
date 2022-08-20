@@ -1,6 +1,10 @@
 using UnityEngine;
 using System.Collections;
 
+//This script allows you to handle saturation in shader on camera
+//All thanks to Alan Zucconi for the great explanation
+//https://www.alanzucconi.com/2015/07/08/screen-shaders-and-postprocessing-effects-in-unity3d/
+
 [ExecuteInEditMode]
 public class BWEffect : MonoBehaviour
 {

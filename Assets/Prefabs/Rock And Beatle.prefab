@@ -149,7 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c0b498ab009df4b9e1f4e57a980507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attachetBeatle: {fileID: 8617098238591834215}
+  beatleAnimator: {fileID: 8617098238591834215}
 --- !u!61 &8617098237995759325
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -121,7 +121,7 @@ public class PlayerController : MonoBehaviour
                 winBubbleUiGameObj.SetActive(false);
                 loseBubbleUiGameObj.SetActive(false);
 
-                AskScreen.instance.Activate(messageShowsBeforePlayingSlotMachine);
+                ConfirmationScreen.instance.Activate(messageShowsBeforePlayingSlotMachine);
 
                 //Two variables looks like identical, but _isPlaySlotMachineConfirmationWindowOpen sets  which type of confirmation windows open
                 //_isConfimationWindowOpen indicates that confirmation window currently open in general
@@ -155,12 +155,12 @@ public class PlayerController : MonoBehaviour
 
             if (_canTryRelationshipWithCurrentGirl)
             {
-                AskScreen.instance.Activate(messageShowsBeforeTryRelationship);
+                ConfirmationScreen.instance.Activate(messageShowsBeforeTryRelationship);
                 _isConfimationWindowOpen = true;
                 return;
             }
 
-            AskScreen.instance.Activate(_currentMessageToConfirmationWindowFromInteractableObject);
+            ConfirmationScreen.instance.Activate(_currentMessageToConfirmationWindowFromInteractableObject);
             _isConfimationWindowOpen = true;
         }
 
@@ -169,19 +169,19 @@ public class PlayerController : MonoBehaviour
         {
             GirlMechanicHandler.instance.TryRelationship(_currentGirl, true);
             SetTryRelationshipActive(false, null);
-            AskScreen.instance.Deactivate();
+            ConfirmationScreen.instance.Deactivate();
         }
 
         if (Input.GetKeyDown(KeyCode.N) && _isConfimationWindowOpen)
         {
             _isConfimationWindowOpen = false;
-            AskScreen.instance.Deactivate();
+            ConfirmationScreen.instance.Deactivate();
         }
 
         if (Input.GetKeyDown(KeyCode.Y) && _isConfimationWindowOpen)
         {
             _isConfimationWindowOpen = false;
-            AskScreen.instance.Deactivate();
+            ConfirmationScreen.instance.Deactivate();
 
             if (_isPlaySlotMachineConfirmationWindowOpen)
             {
@@ -219,10 +219,10 @@ public class PlayerController : MonoBehaviour
 
         if (_isBoundsDisable)
         {
-            if (Input.GetKeyUp(KeyCode.D) && BridgeBody.instance.ReturnInfiniteModState())
+            if (Input.GetKeyUp(KeyCode.D) && Bridge.instance.ReturnInfiniteModState())
             {
-                BridgeBody.instance.MoveBridgeBodyToInitial();
-                BridgeBody.instance.DisableInfiniteMod();
+                Bridge.instance.MoveBridgeBodyToInitial();
+                Bridge.instance.DisableInfiniteMod();
             }
         }
     }
@@ -483,7 +483,7 @@ public class PlayerController : MonoBehaviour
 
         if (collision.tag == "BridgePiece")
         {
-            BridgeBody.instance.CheckPlayerStep(collision.gameObject.GetComponent<BridgePiece>().index);
+            Bridge.instance.CheckPlayerPositionOnBridge(collision.gameObject.GetComponent<BridgePart>().index);
             _currentFootstepsSoundIndex = 2;
         }
 

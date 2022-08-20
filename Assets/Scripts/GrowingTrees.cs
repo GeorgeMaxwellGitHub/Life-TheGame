@@ -6,10 +6,10 @@ public class GrowingTrees : MonoBehaviour
 {
     [SerializeField] float timeToGrowForOnePhase;
 
-    [SerializeField] GameObject[] phases;
+    [SerializeField] GameObject[] growingPhases;
 
-    int currentPhase = 0;
-    bool canChangePhase = false;
+    int _currentGrowingPhase = 0;
+    bool _canChangePhase = false;
 
     private void OnEnable()
     {
@@ -17,15 +17,14 @@ public class GrowingTrees : MonoBehaviour
         StartGrow();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (currentPhase == phases.Length)
+        if (_currentGrowingPhase == growingPhases.Length)
         {
             return;
         }
 
-        if (canChangePhase)
+        if (_canChangePhase)
         {
             StartGrow();
         }
@@ -39,14 +38,14 @@ public class GrowingTrees : MonoBehaviour
 
     IEnumerator GrowCor()
     {
-        canChangePhase = false;
+        _canChangePhase = false;
         yield return new WaitForSeconds(timeToGrowForOnePhase);
 
-        if (currentPhase + 1 <= phases.Length - 1)
+        if (_currentGrowingPhase + 1 <= growingPhases.Length - 1)
         {
-            currentPhase++;
+            _currentGrowingPhase++;
             UpdatePhase();
-            canChangePhase = true;
+            _canChangePhase = true;
         } else
         {
             UpdatePhase();
@@ -55,11 +54,11 @@ public class GrowingTrees : MonoBehaviour
 
     private void UpdatePhase()
     {
-        foreach (GameObject phase in phases)
+        foreach (GameObject phase in growingPhases)
         {
             phase.gameObject.SetActive(false);
         }
 
-        phases[currentPhase].gameObject.SetActive(true);
+        growingPhases[_currentGrowingPhase].gameObject.SetActive(true);
     }
 }

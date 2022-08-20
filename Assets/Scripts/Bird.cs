@@ -7,44 +7,56 @@ public class Bird : MonoBehaviour
     [SerializeField] float birdFlyTime;
     [SerializeField] Animator birdAnimator;
 
-    float birdFlyDuration;
-    bool cantStartFlyEncounter;
+    float _birdFlyCounter;
+    bool _cantStartFlyEncounter;
+    bool _isBirdCurrentlyFly;
 
-    bool playerInArea;
+    bool _isPlayerInArea;
 
     private void Update()
     {
-        if (playerInArea)
+        if (_isPlayerInArea)
         {
-            birdFlyDuration = 0;
+            _birdFlyCounter = 0;
             return;
         }
 
-        if (cantStartFlyEncounter)
+        if (_cantStartFlyEncounter)
         {
-            birdFlyDuration += Time.deltaTime;
-            if (birdFlyDuration >= birdFlyTime)
+            _birdFlyCounter += Time.deltaTime;
+
+            if (_birdFlyCounter >= birdFlyTime)
             {
                 birdAnimator.SetBool("BirdFly", false);
-                cantStartFlyEncounter = false;
+                _cantStartFlyEncounter = false;
+
+                _isBirdCurrentlyFly = false;
             }
         }
     }
+
+    private void BirdLogicHandlerWhenPlayerEnterTheArea()
+    {
+        _isPlayerInArea = true;
+
+        _cantStartFlyEncounter = true;
+        _birdFlyCounter = 0;
+
+        if (!_isBirdCurrentlyFly)
+        {
+            AudioManager.instance.PlayObjectsSFX(1);
+            birdAnimator.SetBool("BirdFly", true);
+
+            _isBirdCurrentlyFly = true;
+        }
+    }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Player")
         {
-            playerInArea = true;
-
-            cantStartFlyEncounter = true;
-            birdFlyDuration = 0;
-
-            if (!birdAnimator.GetBool("BirdFly"))
-            {
-                AudioManager.instance.PlayObjectsSFX(1);
-                birdAnimator.SetBool("BirdFly", true);
-            }
+            BirdLogicHandlerWhenPlayerEnterTheArea();
         }
     }
 
@@ -52,7 +64,7 @@ public class Bird : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            playerInArea = false;
+            _isPlayerInArea = false;
         }
     }
 }

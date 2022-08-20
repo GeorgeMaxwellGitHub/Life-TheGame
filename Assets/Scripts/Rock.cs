@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Rock : MonoBehaviour
 {
-    [SerializeField] Animator attachetBeatle;
+    [SerializeField] Animator beatleAnimator;
     public void Flip()
     {
         if (!GetComponent<Animator>().GetBool("FlipRock"))
         {
             AudioManager.instance.PlayObjectsSFX(3);
+
             GetComponent<Animator>().SetBool("FlipRock", true);
-            attachetBeatle.SetTrigger("MoveBeatle");
+            beatleAnimator.SetTrigger("MoveBeatle");
         }
     }
 

@@ -53,40 +53,63 @@ public class Interactable : MonoBehaviour
 
         yield return new WaitForSeconds(waitTime / 2);
 
-        //«¿–≈‘¿ “Œ–»“‹ - «¿¬≈–Õ”“‹ »‘€ ¬ ‘”Õ ÷»»
-
-        if (canReduceCoins)
-        {
-            GameManager.instance.ReduceCoins(coinsToReduce);
-        }
-
-        if (canDisableGameObject)
-        {
-            gameObjToDisable.SetActive(false);
-        }
-
-        if (canEnableGameObject)
-        {
-            gameObjToEnable.SetActive(true);
-        }
-
-        if (canChangePlayerPosition)
-        {
-            PlayerController.instance.transform.position = futurePlayerPosition.position;
-        }
-
-        if (canReduceTime)
-        {
-            GameManager.instance.ReduceTime(GameManager.instance.GetMaxTime() * (timeToReducenInProcent / 100));
-        }
+        ReduceCoinHandler();
+        DisableGameObjHandler();
+        EnableGameObjHandler();
+        ChangePlayerPositioHandler();
+        ReduceTimeHandler();
 
         yield return new WaitForSeconds(waitTime / 2);
 
         GameManager.instance.FadeOut();
+        DisableAfterInteractionHandler();
+    }
 
+    private void DisableAfterInteractionHandler()
+    {
         if (disableAfterInteration)
         {
-            DisableThisIterationObject();
+            gameObject.SetActive(false);
+        }
+    }
+
+    private void ReduceTimeHandler()
+    {
+        if (canReduceTime)
+        {
+            GameManager.instance.ReduceTime(GameManager.instance.GetMaxTime() * (timeToReducenInProcent / 100));
+        }
+    }
+
+    private void ChangePlayerPositioHandler()
+    {
+        if (canChangePlayerPosition)
+        {
+            PlayerController.instance.transform.position = futurePlayerPosition.position;
+        }
+    }
+
+    private void EnableGameObjHandler()
+    {
+        if (canEnableGameObject)
+        {
+            gameObjToEnable.SetActive(true);
+        }
+    }
+
+    private void DisableGameObjHandler()
+    {
+        if (canDisableGameObject)
+        {
+            gameObjToDisable.SetActive(false);
+        }
+    }
+
+    private void ReduceCoinHandler()
+    {
+        if (canReduceCoins)
+        {
+            GameManager.instance.ReduceCoins(coinsToReduce);
         }
     }
 
@@ -109,10 +132,5 @@ public class Interactable : MonoBehaviour
         {
             PlayerController.instance.SetInteractableObjectActive(false, null, "");
         }
-    }
-
-    private void DisableThisIterationObject()
-    {
-        this.gameObject.SetActive(false);
     }
 }
