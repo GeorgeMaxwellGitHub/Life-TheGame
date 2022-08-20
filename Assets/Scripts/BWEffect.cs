@@ -9,14 +9,14 @@ using System.Collections;
 public class BWEffect : MonoBehaviour
 {
     [SerializeField] float intensity;
-    private Material material;
+    [SerializeField] Material material;
 
     public static BWEffect instance;
 
     // Creates a private material used to the effect
     void Awake()
     {
-        material = new Material(Shader.Find("Hidden/BWDiffuse"));
+        //material = new Material(Shader.Find("Hidden/BWDiffuse"));
         instance = this;
     }
 

@@ -24,7 +24,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] float maxGameTime;
     float _gameTimeLeft;
 
-    [Range(0.001f, 0.01f)] [SerializeField] float fadeToBlackSpeed;
+    [SerializeField] float fadeToBlackSpeed;
 
     [SerializeField] float minFogMaskRadious = 6;
     [SerializeField] float maxFogMaskRadious = 23;
@@ -41,28 +41,33 @@ public class GameManager : MonoBehaviour
     bool _isGameEnded;
     bool _isGameStarted;
 
+    //TEST
+    [SerializeField] bool skipIntro;
+
     void Start()
     {
         instance = this;
-        StartCoroutine(StartGameCor(2f));
 
-        Cursor.visible = false;
-
+        //Cursor.visible = false; 
         curentCoinsUiText.text = GetCurrentCoins().ToString();
-    }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (skipIntro)
         {
-            Application.Quit();
+            _gameTimeLeft = maxGameTime;
+            _isGameStarted = true;
+            return;
         }
 
+        StartCoroutine(StartGameCor(2f));
+    }
+
+    void FixedUpdate()
+    {
         FadeToBlackController();
         FogLogicHandler();
         SaturationLogicHandler();
 
-        curentCoinsUiText.text = GetCurrentCoins().ToString(); 
+        curentCoinsUiText.text = GetCurrentCoins().ToString();
     }
 
     //MAIN GAME MANAGER METHODS

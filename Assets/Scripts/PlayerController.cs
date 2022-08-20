@@ -82,6 +82,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+
         if (_isBoundsDisable)
         {
             if (Input.GetKeyUp(KeyCode.D) && Bridge.instance.ReturnInfiniteModState())

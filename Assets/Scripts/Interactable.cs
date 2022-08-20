@@ -44,6 +44,8 @@ public class Interactable : MonoBehaviour
 
     private IEnumerator FadeAndWait(float waitTime)
     {
+        print(waitTime);
+
         GameManager.instance.FadeIn();
 
         if (canPlayCustomAudioClip)
