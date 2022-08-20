@@ -8,7 +8,7 @@ public class SlotMachine : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            PlayerController.instance.ActivateAbilityToPlaySlotMachine();
+            PlayerController.instance.SetInteractWithSlotMachineOptionActive(true);
         }
     }
 
@@ -16,7 +16,7 @@ public class SlotMachine : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            PlayerController.instance.DisableAbilityToPlaySlotMachine();
+            PlayerController.instance.SetInteractWithSlotMachineOptionActive(false);
         }
     }
 }

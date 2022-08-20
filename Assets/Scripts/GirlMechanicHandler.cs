@@ -44,7 +44,7 @@ public class GirlMechanicHandler : MonoBehaviour
                 girl.ChangeState(2);
                 girl.transform.position = girlFinalSpawnArea.position;
 
-                PlayerController.instance.ShowLove();
+                PlayerController.instance.ShowLoveHeart();
             }
             else
             {

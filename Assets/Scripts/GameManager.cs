@@ -195,7 +195,7 @@ public class GameManager : MonoBehaviour
 
         AudioManager.instance.PlayLifeMusic();
         yield return new WaitForSeconds(33.5f);
-        PlayerController.instance.StopPlayer();
+        PlayerController.instance.CompletleStopPlayer();
         yield return new WaitForSeconds(3f);
         FadeIn();
         yield return new WaitForSeconds(3f);

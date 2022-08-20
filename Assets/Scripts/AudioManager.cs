@@ -87,7 +87,7 @@ public class AudioManager : MonoBehaviour
         if (cantStartBridgeMusic)
         {
             bridgeMusic.Play();
-            StartCoroutine(StartFadeOutAudioSource(footsteps[PlayerController.instance.GetCurrentFootstepsIndex()], 2f, true));
+            StartCoroutine(StartFadeOutAudioSource(footsteps[PlayerController.instance.GetCurrentPlayerFootstepsIndex()], 2f, true));
         }
         
     }
@@ -99,7 +99,7 @@ public class AudioManager : MonoBehaviour
             cantStartBridgeMusic = false;
         }
 
-        footsteps[PlayerController.instance.GetCurrentFootstepsIndex()].volume = 1f;
+        footsteps[PlayerController.instance.GetCurrentPlayerFootstepsIndex()].volume = 1f;
         StartCoroutine(StartFadeOutAudioSource(bridgeMusic, 2f));
     }
 

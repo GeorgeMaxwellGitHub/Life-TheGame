@@ -55,7 +55,7 @@ public class PetCat : MonoBehaviour
     {
         if (collision.tag == "Player" && canShowLove)
         {
-            PlayerController.instance.CanPetCatEnable();
+            PlayerController.instance.SetPetCatOptionActive(true);
             GetComponent<SpriteRenderer>().sprite = activeCat;
 
             if (Random.Range(0, 1f) <= 0.2f)
@@ -69,7 +69,7 @@ public class PetCat : MonoBehaviour
     {
         if (collision.tag == "Player" && canShowLove)
         {
-            PlayerController.instance.CanPetCatDisable();
+            PlayerController.instance.SetPetCatOptionActive(false);
             GetComponent<SpriteRenderer>().sprite = inncativeCat;
         }
     }

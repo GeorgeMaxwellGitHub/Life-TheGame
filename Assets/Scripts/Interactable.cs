@@ -99,7 +99,7 @@ public class Interactable : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            PlayerController.instance.SetInteractableObject(this, textToAsk);
+            PlayerController.instance.SetInteractableObjectActive(true, this, textToAsk);
         }
     }
 
@@ -107,7 +107,7 @@ public class Interactable : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            PlayerController.instance.RemoveInteractableObject();
+            PlayerController.instance.SetInteractableObjectActive(false, null, "");
         }
     }
 

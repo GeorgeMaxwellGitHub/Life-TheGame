@@ -63,11 +63,11 @@ public class Girl : MonoBehaviour
         {
             if (index == 1)
             {
-                PlayerController.instance.CanTryRelationshipActive(this);
+                PlayerController.instance.SetTryRelationshipActive(true, this);
 
             } else if (index == 2) 
             {
-                PlayerController.instance.CanMakeLoveActive(this);
+                PlayerController.instance.SetCanMakeLoveWithGirlActive(true, this);
             }
         }
     }
@@ -78,12 +78,12 @@ public class Girl : MonoBehaviour
         {
             if (index == 1)
             {
-                PlayerController.instance.CanTryRelationshipDisable();
+                PlayerController.instance.SetTryRelationshipActive(false ,null);
 
             }
             else if (index == 2)
             {
-                PlayerController.instance.CanMakeLoveDisable();
+                PlayerController.instance.SetCanMakeLoveWithGirlActive(false, null);
             }
         }
     }

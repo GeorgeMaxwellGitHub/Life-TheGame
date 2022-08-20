@@ -15,7 +15,7 @@ public class Coin : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            PlayerController.instance.CanPickupCoin(this);
+            PlayerController.instance.SetCanPickupCoinActive(true, this);
         }
     }
 
@@ -23,7 +23,7 @@ public class Coin : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            PlayerController.instance.RemoveAbilityToPickupCoin();
+            PlayerController.instance.SetCanPickupCoinActive(false, null);
         }
     }
 }

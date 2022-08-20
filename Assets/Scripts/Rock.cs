@@ -21,7 +21,7 @@ public class Rock : MonoBehaviour
         {
             if (!GetComponent<Animator>().GetBool("FlipRock"))
             {
-                PlayerController.instance.CanFlipRockEnable(this);
+                PlayerController.instance.SetFlipRockOptionActive(true, this);
             }
         }
     }
@@ -30,7 +30,7 @@ public class Rock : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            PlayerController.instance.CanFlipRockDisable();
+            PlayerController.instance.SetFlipRockOptionActive(false, null);
         }
     }
 }

@@ -27,6 +27,6 @@ public class CameraController : MonoBehaviour
         bottomLeftLimit = map.localBounds.min + new Vector3(halfWidth, halfHeight, 0f);
         topRightLimit = map.localBounds.max + new Vector3(-halfWidth, -halfHeight, 0f);
 
-        PlayerController.instance.SetBounds(map.localBounds.min, map.localBounds.max);
+        PlayerController.instance.SetBoundsForCamera(map.localBounds.min, map.localBounds.max);
     }
 }

@@ -4,80 +4,78 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public static PlayerController instance;
+
+    //Cached component references
     Rigidbody2D _playerRigidbody2D;
     Animator _playerAnimator;
 
-    public bool playerCanMove = true;
-    public bool playerNeedsToStop = false;
+    [SerializeField] GameObject GameObjWitchEKeyImage;
+    [SerializeField] GameObject noEnoughMoneyUIGameObj;
+    [SerializeField] GameObject loseBubbleUiGameObj;
+    [SerializeField] GameObject winBubbleUiGameObj;
+    [SerializeField] GameObject loveHeartBubbleUiGameObj;
+    [SerializeField] GameObject brokenHeartBubbleUiGameObj;
 
-    private Vector3 _bottomLeftLevelLimit;
-    private Vector3 _topRightLevelLimit;
+    [SerializeField] Animator playerShadowAnimator;
 
+    Interactable _currentInteractableObject;
+    Coin _currentCoin;
+    Girl _currentGirl;
+    Rock _currentRock;
+
+    //Config
     [SerializeField] float playerMoveSpeed = 1.5f;
-
-    public static PlayerController instance;
-
-    float reduceTimeWhenStay;
-    float reduceTimeWhenWalk;
 
     [SerializeField] float minutesOfStayToEndGame;
     [SerializeField] float minutesOfWalkToEndGame;
 
-    [SerializeField] bool canInteract = false;
-    [SerializeField] Interactable activeInteractableObject;
+    Vector3 _bottomLeftLevelLimit;
+    Vector3 _topRightLevelLimit;
 
-    [SerializeField] bool canPickupCoin = false;
-    [SerializeField] Coin activeCoinThatCanPickup;
+    float _timeToReduceWhenStay;
+    float _timeToReduceWhenWalk;
 
-    public bool isBoundsDisable = false;
+    [SerializeField] string messageShowsBeforePlayingSlotMachine;
+    [SerializeField] string messageShowsBeforeTryRelationship;
 
-    private bool canPlaySlotMachine;
+    //States
+    bool _playerCanMove = true;
+    bool _playerNeedsToStop = false;
 
-    private bool canTryRelationship;
+    bool _canPressEKey;
 
-    private bool canMakeLove;
+    bool _canInteractWithInteractableObjects = false;
+    
+    bool _isConfimationWindowOpen;
+    string _currentMessageToConfirmationWindowFromInteractableObject;
 
-    private bool canPetCat;
+    bool _canPickupCurrentCoin = false;
+    
+    bool _isBoundsDisable = false;
 
-    Girl activeGirl;
+    bool _canTryRelationshipWithCurrentGirl;
+    bool _canMakeLoveWithCurrentGirl;
+    
+    bool _canPetCat;
 
-    [SerializeField] GameObject eKeyImage;
+    bool _isPlaySlotMachineConfirmationWindowOpen;
+    bool _canInteractWitchSlotMachine;
+    bool _isSlotMachineBubbleActive;
 
-    Rock activeRock;
-    bool canFlipRock;
+    bool _canFlipCurrentRock;
 
-    int currentFootstepsIndex;
-
-    [SerializeField] GameObject askUIObj;
-    bool canChooseWhatToDo;
-
-    string activeMessageToUI;
-
-    [SerializeField] GameObject noEnoughtoneyUI;
-
-    bool canPlaySlotMachineTempAsk;
-
-    [SerializeField] GameObject loseUi;
-    [SerializeField] GameObject winUi;
-
-    [SerializeField] Animator shadowAnimator;
-
-    bool canPressE;
-
-    [SerializeField] GameObject loveBubble;
-    [SerializeField] GameObject brokenHeart;
-
-    bool activeBubble;
+    int _currentFootstepsSoundIndex;
 
     void Start()
     {
+        instance = this;
+
         _playerRigidbody2D = GetComponent<Rigidbody2D>();
         _playerAnimator = GetComponent<Animator>();
 
-        reduceTimeWhenStay = CalculateIterationValue(0, 1, minutesOfStayToEndGame);
-        reduceTimeWhenWalk = CalculateIterationValue(0, 1, minutesOfWalkToEndGame);
-
-        instance = this;
+        _timeToReduceWhenStay = CalculateIterationValue(0, 1, minutesOfStayToEndGame);
+        _timeToReduceWhenWalk = CalculateIterationValue(0, 1, minutesOfWalkToEndGame);
     }
 
     private void Update()
@@ -87,135 +85,139 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if ((canPlaySlotMachine && !activeBubble)||
-            canTryRelationship ||
-            canMakeLove ||
-            canPetCat ||
-            canFlipRock ||
-            canPickupCoin ||
-            canInteract &&
-            !canChooseWhatToDo)
+        if ((_canInteractWitchSlotMachine && !_isSlotMachineBubbleActive)||
+            _canTryRelationshipWithCurrentGirl ||
+            _canMakeLoveWithCurrentGirl ||
+            _canPetCat ||
+            _canFlipCurrentRock ||
+            _canPickupCurrentCoin ||
+            _canInteractWithInteractableObjects && !_isConfimationWindowOpen)
         {
-            eKeyImage.SetActive(true);
-            canPressE = true;
+            GameObjWitchEKeyImage.SetActive(true);
+            _canPressEKey = true;
         } else
         {
-            eKeyImage.SetActive(false);
-            canPressE = false;
+            GameObjWitchEKeyImage.SetActive(false);
+            _canPressEKey = false;
         }
 
-        if (Input.GetKeyDown(KeyCode.E) && canPressE)
+        if (Input.GetKeyDown(KeyCode.E) && _canPressEKey)
         {
-            eKeyImage.SetActive(false);
+            GameObjWitchEKeyImage.SetActive(false);
 
+            //This will stop the player
             _playerAnimator.SetFloat("moveX", 0);
             _playerAnimator.SetFloat("moveY", 0);
             _playerRigidbody2D.velocity = Vector2.zero;
 
-            if (canFlipRock)
+            if (_canFlipCurrentRock)
             {
-                activeRock.Flip();
+                _currentRock.Flip();
                 return;
             }
 
-            if (canPlaySlotMachine)
+            if (_canInteractWitchSlotMachine)
             {
-                winUi.SetActive(false);
-                loseUi.SetActive(false);
+                winBubbleUiGameObj.SetActive(false);
+                loseBubbleUiGameObj.SetActive(false);
 
-                AskScreen.instance.Activate("I can stay here and try my luck for 1 coin!");
+                AskScreen.instance.Activate(messageShowsBeforePlayingSlotMachine);
 
-                canPlaySlotMachineTempAsk = true;
-                canChooseWhatToDo = true;
+                //Two variables looks like identical, but _isPlaySlotMachineConfirmationWindowOpen sets  which type of confirmation windows open
+                //_isConfimationWindowOpen indicates that confirmation window currently open in general
+                _isPlaySlotMachineConfirmationWindowOpen = true;
+                _isConfimationWindowOpen = true;
+
                 return;
             }
 
-            if (canPickupCoin)
+            if (_canPickupCurrentCoin)
             {
-                activeCoinThatCanPickup.Pickup();
-                activeCoinThatCanPickup = null;
-                canPickupCoin = false;
+                _currentCoin.Pickup();
+                _currentCoin = null;
+                _canPickupCurrentCoin = false;
                 return;
             }
 
-            if (canMakeLove)
+            if (_canMakeLoveWithCurrentGirl)
             {
-                canMakeLove = false;
-                activeGirl.MakeLove();
+                _canMakeLoveWithCurrentGirl = false;
+                _currentGirl.MakeLove();
                 return;
             }
 
-            if (canPetCat)
+            if (_canPetCat)
             {
-                canPetCat = false;
+                _canPetCat = false;
                 PetCat.instance.ShowLove();
                 return;
             }
 
-            if (canTryRelationship)
+            if (_canTryRelationshipWithCurrentGirl)
             {
-                AskScreen.instance.Activate("This girl looks lonely. I could try to keep her company for life, but I do not know if it will work. It might take some time. Try to have a relationship?");
-                canChooseWhatToDo = true;
+                AskScreen.instance.Activate(messageShowsBeforeTryRelationship);
+                _isConfimationWindowOpen = true;
                 return;
             }
 
-            AskScreen.instance.Activate(activeMessageToUI);
-            canChooseWhatToDo = true;
+            AskScreen.instance.Activate(_currentMessageToConfirmationWindowFromInteractableObject);
+            _isConfimationWindowOpen = true;
         }
 
-        if (Input.GetKeyDown(KeyCode.N) && canTryRelationship)
+        //Triggered when the player refused to try relationship with girl
+        if (Input.GetKeyDown(KeyCode.N) && _canTryRelationshipWithCurrentGirl)
         {
-            GirlMechanicHandler.instance.TryRelationship(activeGirl, true);
-            CanTryRelationshipDisable();
+            GirlMechanicHandler.instance.TryRelationship(_currentGirl, true);
+            SetTryRelationshipActive(false, null);
             AskScreen.instance.Deactivate();
         }
 
-        if (Input.GetKeyDown(KeyCode.N) && canChooseWhatToDo)
+        if (Input.GetKeyDown(KeyCode.N) && _isConfimationWindowOpen)
         {
-            canChooseWhatToDo = false;
+            _isConfimationWindowOpen = false;
             AskScreen.instance.Deactivate();
         }
 
-        if (Input.GetKeyDown(KeyCode.Y) && canChooseWhatToDo)
+        if (Input.GetKeyDown(KeyCode.Y) && _isConfimationWindowOpen)
         {
-            canChooseWhatToDo = false;
+            _isConfimationWindowOpen = false;
             AskScreen.instance.Deactivate();
 
-            if (canPlaySlotMachineTempAsk)
+            if (_isPlaySlotMachineConfirmationWindowOpen)
             {
-                canPlaySlotMachineTempAsk = false;
+                _isPlaySlotMachineConfirmationWindowOpen = false;
 
                 if (GameManager.instance.GetCurrentCoins() <= 0)
                 {
-                    StartCoroutine(MoneyCor(noEnoughtoneyUI));
+                    StartCoroutine(MoneyCor(noEnoughMoneyUIGameObj));
                     return;
                 }
 
                 MakeOneGameOnSlotMachine();
             }
 
-            if (canInteract)
+            if (_canInteractWithInteractableObjects)
             {
-                if (activeInteractableObject.GetRequiedCoint() > GameManager.instance.GetCurrentCoins())
+                if (_currentInteractableObject.GetRequiedCoint() > GameManager.instance.GetCurrentCoins())
                 {
-                    StartCoroutine(MoneyCor(noEnoughtoneyUI));
+                    StartCoroutine(MoneyCor(noEnoughMoneyUIGameObj));
                     return;
                 }
 
-                activeInteractableObject.Activate();
-                activeInteractableObject = null;
-                canInteract = false;
+                _currentInteractableObject.Activate();
+                _currentInteractableObject = null;
+                _canInteractWithInteractableObjects = false;
             }
 
             
-            if (canTryRelationship)
+            if (_canTryRelationshipWithCurrentGirl)
             {
-                GirlMechanicHandler.instance.TryRelationship(activeGirl);
-                CanTryRelationshipDisable();
+                GirlMechanicHandler.instance.TryRelationship(_currentGirl);
+                SetTryRelationshipActive(false, null);
             }
         }
 
-        if (isBoundsDisable)
+        if (_isBoundsDisable)
         {
             if (Input.GetKeyUp(KeyCode.D) && BridgeBody.instance.ReturnInfiniteModState())
             {
@@ -234,134 +236,36 @@ public class PlayerController : MonoBehaviour
 
         ReduceTimeWhenMoving();
 
-        if (canChooseWhatToDo)
+        if (_isConfimationWindowOpen)
         {
             return;
         }
 
         MovingController();
     }
-
-    private IEnumerator MoneyCor(GameObject bubble)
+    private void ReduceTimeWhenMoving()
     {
-        bubble.SetActive(true);
-        activeBubble = true;
-        playerNeedsToStop = true;
-
-        yield return new WaitForSeconds(1.5f);
-
-        activeBubble = false;
-        playerNeedsToStop = false;
-        bubble.SetActive(false);
-    }
-
-    public void CanFlipRockEnable(Rock rock)
-    {
-        activeRock = rock;
-        canFlipRock = true;
-    }
-
-    public void CanFlipRockDisable()
-    {
-        activeRock = null;
-        canFlipRock = false;
-    }
-
-    public void CanPetCatEnable()
-    {
-        canPetCat = true;
-    }
-
-    public void CanPetCatDisable()
-    {
-        canPetCat = false;
-    }
-
-    public void CanMakeLoveActive(Girl girl)
-    {
-        activeGirl = girl;
-        canMakeLove = true;
-    }
-
-    public void CanMakeLoveDisable()
-    {
-        activeGirl = null;
-        canMakeLove = false;
-    }
-
-    public void CanTryRelationshipActive(Girl girl)
-    {
-        activeGirl = girl;
-        canTryRelationship = true;
-    }
-
-    public void CanTryRelationshipDisable()
-    {
-        activeGirl = null;
-        canTryRelationship = false;
-    }
-    
-    public void MakeOneGameOnSlotMachine()
-    {
-        GameManager.instance.ReduceTime(0.02f);
-        GameManager.instance.ReduceCoins(1);
-        int i = Random.Range(0, 3);
-        print(i);
-        GameManager.instance.AddCoin(i);
-
-        if (i > 0)
+        if (GameManager.instance.GetFadingState() != true)
         {
-            StartCoroutine(MoneyCor(winUi));
-            AudioManager.instance.PlayObjectsSFX(4, true);
-        } else
-        {
-            StartCoroutine(MoneyCor(loseUi));
-            AudioManager.instance.PlayObjectsSFX(5, true);
+            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+            {
+                GameManager.instance.ReduceTime(_timeToReduceWhenWalk);
+                playerShadowAnimator.SetBool("Run", true);
+            }
+            else
+            {
+                GameManager.instance.ReduceTime(_timeToReduceWhenStay);
+                playerShadowAnimator.SetBool("Run", false);
+            }
         }
-    }
-
-    public void ActivateAbilityToPlaySlotMachine()
-    {
-        canPlaySlotMachine = true;
-    }
-
-    public void DisableAbilityToPlaySlotMachine()
-    {
-        canPlaySlotMachine = false;
-    }
-
-    public void CanPickupCoin(Coin coin)
-    {
-        activeCoinThatCanPickup = coin;
-        canPickupCoin = true;
-    }
-
-    public void RemoveAbilityToPickupCoin()
-    {
-        activeCoinThatCanPickup = null;
-        canPickupCoin = false;
-    }
-
-    public void SetInteractableObject(Interactable interactableObject, string activeMessage)
-    {
-        activeMessageToUI = activeMessage;
-        activeInteractableObject = interactableObject;
-        canInteract = true;
-    }
-
-    public void RemoveInteractableObject()
-    {
-        activeMessageToUI = "";
-        activeInteractableObject = null;
-        canInteract = false;
     }
 
     private void MovingController()
     {
         bool isShadowAnimationActive = Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0 ? true : false;
-        shadowAnimator.SetBool("Run", isShadowAnimationActive);
+        playerShadowAnimator.SetBool("Run", isShadowAnimationActive);
 
-        if (playerCanMove && !playerNeedsToStop)
+        if (_playerCanMove && !_playerNeedsToStop)
         {
             _playerRigidbody2D.velocity = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * playerMoveSpeed;
 
@@ -375,42 +279,156 @@ public class PlayerController : MonoBehaviour
             _playerRigidbody2D.velocity = Vector2.zero;
         }
 
-        if (!isBoundsDisable)
+        if (!_isBoundsDisable)
         {
             //Clamp player in tilemap bounds. Bounds were set-up via CameraController.cs
             transform.position = new Vector3(Mathf.Clamp(transform.position.x, _bottomLeftLevelLimit.x, _topRightLevelLimit.x),
                                              Mathf.Clamp(transform.position.y, _bottomLeftLevelLimit.y, _topRightLevelLimit.y),
                                              transform.position.z);
         }
-        
     }
 
-    public void StopPlayer()
+    private IEnumerator MoneyCor(GameObject bubble)
     {
-        playerNeedsToStop = true;
+        bubble.SetActive(true);
+        _isSlotMachineBubbleActive = true;
+        _playerNeedsToStop = true;
+
+        yield return new WaitForSeconds(1.5f);
+
+        _isSlotMachineBubbleActive = false;
+        _playerNeedsToStop = false;
+        bubble.SetActive(false);
+    }
+
+    public void SetFlipRockOptionActive(bool value, Rock rock)
+    {
+        if (value == true && rock == null)
+        {
+            throw new System.Exception("Parameter rock can't be equal null, if option condiiton is true!");
+        }
+
+        if (value == false && rock != null)
+        {
+            throw new System.Exception("Rock parameter must be null, if flip rock option condition equals false!");
+        }
+
+        _canFlipCurrentRock = value;
+        _currentRock = rock;
+    }
+
+    public void SetPetCatOptionActive(bool value)
+    {
+        _canPetCat = value;
+    }
+
+    public void SetCanMakeLoveWithGirlActive(bool value, Girl girl)
+    {
+        if (value == true && girl == null)
+        {
+            throw new System.Exception("Parameter girl can't be equal null, if option condiiton is true!");
+        }
+
+        if (value == false && girl != null)
+        {
+            throw new System.Exception("Girl parameter must be null, if flip rock option condition equals false!");
+        }
+
+        _canMakeLoveWithCurrentGirl = value;
+        _currentGirl = girl;
+    }
+
+    public void SetTryRelationshipActive(bool value, Girl girl)
+    {
+        if (value == true && girl == null)
+        {
+            throw new System.Exception("Parameter girl can't be equal null, if option condiiton is true!");
+        }
+
+        if (value == false && girl != null)
+        {
+            throw new System.Exception("Girl parameter must be null, if flip rock option condition equals false!");
+        }
+
+        _canTryRelationshipWithCurrentGirl = value;
+        _currentGirl = girl;
+    }
+    
+    public void MakeOneGameOnSlotMachine()
+    {
+        GameManager.instance.ReduceTime(0.02f);
+        GameManager.instance.ReduceCoins(1);
+        int i = Random.Range(0, 3);
+        print(i);
+        GameManager.instance.AddCoin(i);
+
+        if (i > 0)
+        {
+            StartCoroutine(MoneyCor(winBubbleUiGameObj));
+            AudioManager.instance.PlayObjectsSFX(4, true);
+        } else
+        {
+            StartCoroutine(MoneyCor(loseBubbleUiGameObj));
+            AudioManager.instance.PlayObjectsSFX(5, true);
+        }
+    }
+
+    public void SetInteractWithSlotMachineOptionActive(bool value)
+    {
+        _canInteractWitchSlotMachine = value;
+    }
+
+    public void SetCanPickupCoinActive(bool value, Coin coin)
+    {
+        if (value == true && coin == null)
+        {
+            throw new System.Exception("Parameter coin can't be equal null, if option condiiton is true!");
+        }
+
+        if (value == false && coin != null)
+        {
+            throw new System.Exception("Coin parameter must be null, if flip rock option condition equals false!");
+        }
+
+        _canPickupCurrentCoin = value;
+        _currentCoin = coin;
+    }
+
+    public void SetInteractableObjectActive(bool value, Interactable interactableObject, string activeMessage)
+    {
+        if (value == true && interactableObject == null)
+        {
+            Debug.LogError("Parameter interactableObject can't be equal null, if option condiiton is true!");
+        }
+
+        if (value == false && interactableObject != null)
+        {
+            Debug.LogWarning("InteractableObject parameter must be null, if flip rock option condition equals false! This code can use as so, but please make sure that you send correct parameters");
+        }
+
+        if (value)
+        {
+            _canInteractWithInteractableObjects = true;
+            _currentInteractableObject = interactableObject;
+            _currentMessageToConfirmationWindowFromInteractableObject = activeMessage;
+        } else
+        {
+            _canInteractWithInteractableObjects = false;
+            _currentInteractableObject = null;
+            _currentMessageToConfirmationWindowFromInteractableObject = "";
+        }
+    }
+
+    public void CompletleStopPlayer()
+    {
+        _playerNeedsToStop = true;
         _playerAnimator.SetFloat("moveX", 0);
         _playerAnimator.SetFloat("moveY", 0);
         _playerRigidbody2D.velocity = Vector2.zero;
     }
 
-    private void ReduceTimeWhenMoving()
-    {
-        if (GameManager.instance.GetFadingState() != true)
-        {
-            if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-            {
-                GameManager.instance.ReduceTime(reduceTimeWhenWalk);
-                shadowAnimator.SetBool("Run", true);
-            }
-            else
-            {
-                GameManager.instance.ReduceTime(reduceTimeWhenStay);
-                shadowAnimator.SetBool("Run", false);
-            }
-        }
-    }
-
-    public void SetBounds(Vector3 botLeft, Vector3 topRight)
+    //Get info about bottom left and top right corners of the camera and clamp camera between them
+    public void SetBoundsForCamera(Vector3 botLeft, Vector3 topRight)
     {
         _bottomLeftLevelLimit = botLeft + new Vector3(1f, 1f, 0);
         _topRightLevelLimit = topRight + new Vector3(-1f, -1f, 0);
@@ -424,29 +442,29 @@ public class PlayerController : MonoBehaviour
 
     public void PlayFootstepsSound()
     {
-        AudioManager.instance.PlayFootsteps(currentFootstepsIndex);
+        AudioManager.instance.PlayFootsteps(_currentFootstepsSoundIndex);
     }
 
-    public int GetCurrentFootstepsIndex()
+    public int GetCurrentPlayerFootstepsIndex()
     {
-        return currentFootstepsIndex;
+        return _currentFootstepsSoundIndex;
     }
 
-    public void ShowLove()
+    public void ShowLoveHeart()
     {
-        StartCoroutine(ShowObjectOnOneSecond(loveBubble));
+        StartCoroutine(ShowObjectAndWaitCor(loveHeartBubbleUiGameObj, 2.5f));
     }
 
     public void ShowBrokenHeart()
     {
-        StartCoroutine(ShowObjectOnOneSecond(brokenHeart));
+        StartCoroutine(ShowObjectAndWaitCor(brokenHeartBubbleUiGameObj, 2.5f));
     }
 
-    IEnumerator ShowObjectOnOneSecond(GameObject gameObj)
+    IEnumerator ShowObjectAndWaitCor(GameObject gameObj, float time)
     {
         gameObj.SetActive(true);
 
-        yield return new WaitForSeconds(2.5f);
+        yield return new WaitForSeconds(time);
 
         gameObj.SetActive(false);
     }
@@ -455,40 +473,43 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.tag == "BoundsDisabler")
         {
-            print("Bounds is disabled");
-            isBoundsDisable = true;
+            _isBoundsDisable = true;
         }
 
         if (collision.tag == "BoundsEnabler")
         {
-            print("Bounds is enabled");
-            isBoundsDisable = false;
+            _isBoundsDisable = false;
         }
 
         if (collision.tag == "BridgePiece")
         {
             BridgeBody.instance.CheckPlayerStep(collision.gameObject.GetComponent<BridgePiece>().index);
-            currentFootstepsIndex = 2;
+            _currentFootstepsSoundIndex = 2;
         }
 
+        FootstepsSoundsIndexChanger(collision);
+    }
+
+    private void FootstepsSoundsIndexChanger(Collider2D collision)
+    {
         if (collision.tag == "BG_Wood")
         {
-            currentFootstepsIndex = 2;
+            _currentFootstepsSoundIndex = 2;
         }
 
         if (collision.tag == "BG_Sand")
         {
-            currentFootstepsIndex = 1;
+            _currentFootstepsSoundIndex = 1;
         }
 
         if (collision.tag == "BG_Grass")
         {
-            currentFootstepsIndex = 0;
+            _currentFootstepsSoundIndex = 0;
         }
 
         if (collision.tag == "BG_Metal")
         {
-            currentFootstepsIndex = 3;
+            _currentFootstepsSoundIndex = 3;
         }
     }
 }
